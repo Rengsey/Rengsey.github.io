@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHANRENG SEY NHIM | IoT & ML Engineer Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS Variables & Theme Setup --- */
+        :root {
+            --bg-dark: #0B1021;
+            --bg-card-glass: rgba(22, 27, 51, 0.7);
+            --text-primary: #E5E7EB;
+            --text-secondary: #9CA3AF;
+            --accent-cyan: #00E5FF;
+            --font-header: 'Roboto Mono', monospace;
+            --font-body: 'Inter', sans-serif;
+            --section-spacing: 120px;
+        }
+
+        /* --- Global Resets & Core Styles --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            position: relative;
+        }
+
+        /* Particle Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, rgba(11, 16, 33, 0) 70%);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-cyan);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: var(--section-spacing) 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-header);
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+
+        h2.section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2.section-title::before {
+            content: '//';
+            color: var(--accent-cyan);
+            margin-right: 15px;
+            font-weight: 300;
+        }
+
+        .accent-text {
+            color: var(--accent-cyan);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            font-family: var(--font-header);
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background-color: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-cyan);
+            transition: all 0.4s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover {
+            color: var(--bg-dark);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            background: rgba(11, 16, 33, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 10px 5%;
+            background: rgba(11, 16, 33, 0.95);
+        }
+
+        .nav-logo {
+            font-family: var(--font-header);
+            font-weight: 700;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a {
+            margin-left: 35px;
+            font-family: var(--font-header);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Hero Section (UPDATED ANIMATIONS) --- */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 60px;
+        }
+
+        .hero-flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 650px;
+        }
+
+        /* 1. KEEPS TYPING: Greeting */
+        .hero-greeting {
+            font-family: var(--font-header);
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+
+            /* Typing specific styles */
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 0;
+            border-right: 3px solid var(--accent-cyan);
+            /* Cursor */
+
+            /* Animation: Type for 1.5s */
+            animation:
+                typing-greeting 1.5s steps(19, end) 0.5s forwards,
+                blink-caret 0.35s step-end infinite;
+        }
+
+        /* 2. FADE UP: Name (Delayed for Greeting) */
+        .hero-title {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 25px;
+            font-weight: 800;
+            opacity: 0;
+            animation: fadeUp 0.6s 2.2s forwards;
+        }
+
+        /* 3. FADE UP: Subtitle (No longer typing) */
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            opacity: 0;
+            /* Hidden Start */
+
+            /* Animation: Fade Up starts at 2.4s */
+            animation: fadeUp 0.6s 2.4s forwards;
+        }
+
+        /* 4. FADE UP: Description */
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 550px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeUp 0.6s 2.6s forwards;
+        }
+
+        .hero-btn-container {
+            opacity: 0;
+            animation: fadeUp 0.6s 2.8s forwards;
+        }
+
+        .hero-image-container {
+            flex: 0 0 auto;
+            width: 350px;
+            height: 350px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+            animation: zoomIn 1s 0.5s forwards;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--accent-cyan);
+            background: linear-gradient(45deg, var(--bg-card-glass), var(--bg-dark));
+            animation: cyberPulse 3s infinite;
+        }
+
+        /* --- Other Sections --- */
+        .skill-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .chip {
+            font-family: var(--font-header);
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.3);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .chip:hover {
+            background: rgba(0, 229, 255, 0.2);
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 229, 255, 0.1);
+        }
+
+        .chip i {
+            color: var(--accent-cyan);
+            margin-right: 8px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 850px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 60px;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -11px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--bg-dark);
+            border: 4px solid var(--accent-cyan);
+            box-shadow: 0 0 10px var(--accent-cyan);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background-color: var(--accent-cyan);
+            transform: scale(1.2);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--bg-card-glass);
+            backdrop-filter: blur(20px);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            top: 0;
+        }
+
+        .project-card:hover {
+            top: -15px;
+            border-color: rgba(0, 229, 255, 0.6);
+            box-shadow: 0 20px 40px -15px rgba(0, 229, 255, 0.3);
+        }
+
+        .project-content {
+            padding: 35px;
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .folder-icon {
+            font-size: 45px;
+            color: var(--accent-cyan);
+        }
+
+        .project-links a {
+            font-size: 22px;
+            margin-left: 18px;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .project-links a:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .project-tech-stack {
+            font-family: var(--font-header);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        footer {
+            background: rgba(11, 16, 33, 0.9);
+            padding: 80px 0;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .contact-links a {
+            font-size: 2.5rem;
+            margin: 0 20px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .contact-links a:hover {
+            transform: translateY(-5px) scale(1.1);
+            color: var(--accent-cyan);
+        }
+
+        /* --- Keyframes --- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes cyberPulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 30px rgba(0, 229, 255, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+            }
+        }
+
+        @keyframes blink-caret {
+
+            from,
+            to {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: var(--accent-cyan);
+            }
+        }
+
+        /* Typing animation for greeting only */
+        @keyframes typing-greeting {
+            from {
+                width: 0;
+            }
+
+            to {
+                width: 19ch;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            h2.section-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-flex-container {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .hero-image-container {
+                width: 250px;
+                height: 250px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle,
+            .hero-greeting {
+                white-space: normal;
+                border: none;
+                animation: none;
+                width: auto;
+                opacity: 1;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particles-js"></div>
+
+    <nav id="navbar">
+        <div class="nav-logo" data-aos="fade-down">
+            <span class="accent-text">&lt;CHANRENGSEY</span>NHIM_&gt;
+        </div>
+        <div class="nav-links" data-aos="fade-down" data-aos-delay="200">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="container hero-flex-container">
+            <div class="hero-content">
+                <p class="hero-greeting">Hello, world. I am</p>
+                <h1 class="hero-title">CHANRENG SEY NHIM.</h1>
+                <h2 class="hero-subtitle">IoT and Machine Learning Engineer_</h2>
+                <p class="hero-description">
+                    An IoT & Machine Learning Engineer specialized in deploying optimized AI models onto edge devices
+                    for real-time processing in resource-constrained environments.
+                </p>
+                <div class="hero-btn-container">
+                    <a href="#projects" class="btn btn-primary">View My Work <i class="fas fa-arrow-right"
+                            style="margin-left: 10px;"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-image-container">
+                <img src="profile.png" alt="Chanrengsey Nhim" class="profile-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">About Me</h2>
+            <div style="max-width: 800px; color: var(--text-secondary);" data-aos="fade-up" data-aos-delay="200">
+                <p style="margin-bottom: 25px; font-size: 1.1rem;">
+                    I am a high-impact engineer sitting at the intersection of physical sensor networks and advanced
+                    algorithms. My passion lies in <span class="accent-text">"TinyML"</span>—taking complex neural
+                    networks and optimizing them to run efficiently on microcontrollers that operate on batteries for
+                    years.
+                </p>
+                <p style="font-size: 1.1rem;">
+                    With a background in both Electrical Engineering and Computer Science, I understand the full stack:
+                    from PCB constraints and firmware interrupts to cloud data pipelines and model quantization. I have
+                    a proven track record of reducing latency and bandwidth costs in industrial IoT applications.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Skills</h2>
+            <div class="skills-category" data-aos="fade-up">
+                <h3>ML & Edge AI</h3>
+                <div class="skill-chips" style="margin-top: 20px;">
+                    <span class="chip"><i class="fab fa-python"></i> Python</span>
+                    <span class="chip"><i class="fas fa-brain"></i> TensorFlow Lite</span>
+                    <span class="chip"><i class="fas fa-fire"></i> PyTorch</span>
+                    <span class="chip"><i class="fas fa-wave-square"></i> Edge Impulse</span>
+                    <span class="chip"><i class="far fa-eye"></i> OpenCV</span>
+                    <span class="chip"><i class="fas fa-microchip"></i> TinyML</span>
+                </div>
+            </div>
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="200" style="margin-top: 50px;">
+                <h3>Embedded & IoT</h3>
+                <div class="skill-chips" style="margin-top: 20px;">
+                    <span class="chip"><i class="fas fa-code"></i> C/C++</span>
+                    <span class="chip"><i class="fas fa-wifi"></i> ESP32</span>
+                    <span class="chip"><i class="fas fa-microchip"></i> STM32</span>
+                    <span class="chip"><i class="fab fa-raspberry-pi"></i> Raspberry Pi</span>
+                    <span class="chip"><i class="fas fa-stopwatch"></i> FreeRTOS</span>
+                    <span class="chip"><i class="fas fa-network-wired"></i> MQTT</span>
+                </div>
+            </div>
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="400" style="margin-top: 50px;">
+                <h3>Cloud & DevOps</h3>
+                <div class="skill-chips" style="margin-top: 20px;">
+                    <span class="chip"><i class="fab fa-aws"></i> AWS IoT Core</span>
+                    <span class="chip"><i class="fab fa-docker"></i> Docker</span>
+                    <span class="chip"><i class="fas fa-dharmachakra"></i> Kubernetes</span>
+                    <span class="chip"><i class="fab fa-git-alt"></i> Git</span>
+                    <span class="chip"><i class="fas fa-sync"></i> CI/CD</span>
+                    <span class="chip"><i class="fab fa-linux"></i> Linux</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Background & Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <p class="timeline-date">June 2022 – Present</p>
+                    <div class="timeline-content">
+                        <h3>Senior IoT ML Engineer</h3>
+                        <span class="timeline-company accent-text">TechGnosis Industries | Austin, TX</span>
+                        <ul style="margin-top: 15px; list-style: none; color: var(--text-secondary);">
+                            <li style="margin-bottom: 10px;"><i class="fas fa-chevron-right accent-text"
+                                    style="margin-right: 10px;"></i>Lead architect for a predictive maintenance suite
+                                integrating vibration sensors with ESP32 modules.</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-chevron-right accent-text"
+                                    style="margin-right: 10px;"></i>Deployed quantized TensorFlow Lite models directly
+                                onto edge devices (94% accuracy, <150kB RAM).</li>
+                            <li><i class="fas fa-chevron-right accent-text" style="margin-right: 10px;"></i>Designed
+                                MQTT ingestion pipelines feeding into AWS IoT Core and Kinesis for TB-scale data
+                                processing.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <p class="timeline-date">Jan 2020 – May 2022</p>
+                    <div class="timeline-content">
+                        <h3>Embedded Software Engineer (AI Focus)</h3>
+                        <span class="timeline-company accent-text">SmartSense Devices | Atlanta, GA</span>
+                        <ul style="margin-top: 15px; list-style: none; color: var(--text-secondary);">
+                            <li style="margin-bottom: 10px;"><i class="fas fa-chevron-right accent-text"
+                                    style="margin-right: 10px;"></i>Developed C++ firmware for low-power,
+                                battery-operated smart security cameras using STM32.</li>
+                            <li style="margin-bottom: 10px;"><i class="fas fa-chevron-right accent-text"
+                                    style="margin-right: 10px;"></i>Implemented on-device computer vision (person
+                                detection) using TinyML techniques, reducing cloud false positives by 65%.</li>
+                            <li><i class="fas fa-chevron-right accent-text" style="margin-right: 10px;"></i>Optimized
+                                sensor polling using FreeRTOS to extend battery life significantly.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-right">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-aos="zoom-in-up">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="far fa-folder-open folder-icon"></i>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                                <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">GestureNet: Wearable Edge ML</h3>
+                        <p class="project-description" style="color: var(--text-secondary);">
+                            A wearable wristband capable of recognizing 8 distinct hand gestures in real-time to control
+                            smart home devices locally. Trained a 1D-CNN and converted to TFLite Micro.
+                        </p>
+                        <div class="project-tech-stack">
+                            <span>ESP32-S3</span>
+                            <span>TFLite Micro</span>
+                            <span>IMU Sensors</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-aos="zoom-in-up" data-aos-delay="200">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="far fa-folder-open folder-icon"></i>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Autonomous Indoor Nav Bot</h3>
+                        <p class="project-description" style="color: var(--text-secondary);">
+                            Differential drive robot build using ROS2 for SLAM. Integrated OpenCV on a Pi 4 for visual
+                            object recognition to identify target destinations in dynamic environments.
+                        </p>
+                        <div class="project-tech-stack">
+                            <span>Raspberry Pi 4</span>
+                            <span>ROS2</span>
+                            <span>OpenCV</span>
+                            <span>LiDAR</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-aos="zoom-in-up" data-aos-delay="400">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <i class="far fa-folder-open folder-icon"></i>
+                            <div class="project-links">
+                                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="project-title">Industrial MQTT Broker Cluster</h3>
+                        <p class="project-description" style="color: var(--text-secondary);">
+                            Setup and load testing of a high-availability MQTT broker cluster using VerneMQ on
+                            Kubernetes, capable of handling 100k concurrent IoT connections.
+                        </p>
+                        <div class="project-tech-stack">
+                            <span>Kubernetes</span>
+                            <span>Docker</span>
+                            <span>MQTT</span>
+                            <span>AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container" data-aos="fade-up">
+            <h2 class="section-title" style="text-align: center; display: block;">Get in Touch</h2>
+            <p
+                style="color: var(--text-secondary); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; font-size: 1.1rem;">
+                I'm currently looking for new opportunities in edge computing and industrial IoT AI. My inbox is always
+                open.
+            </p>
+            <div class="contact-links">
+                <a href="https://github.com/Rengsey" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/chanreng-sey-nhim-61b887225" target="_blank"><i
+                        class="fab fa-linkedin"></i></a>
+                <a href="mailto:nhimchanrengsey@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <div style="margin-top: 50px;">
+                <a href="chanrengsey_cv.pdf" class="btn btn-primary">Download Resume PDF <i class="fas fa-download"
+                        style="margin-left: 10px;"></i></a>
+            </div>
+            <p
+                style="margin-top: 80px; color: var(--text-secondary); font-family: var(--font-header); font-size: 0.8rem;">
+                Designed & Built by Chanreng Sey Nhim <span class="accent-text">_</span>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: true, mirror: false });
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) { navbar.classList.add('scrolled'); }
+            else { navbar.classList.remove('scrolled'); }
+        });
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#00E5FF" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false } },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#00E5FF", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 180, "line_linked": { "opacity": 0.5 } } }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+
+</html>
