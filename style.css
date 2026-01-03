@@ -1,0 +1,165 @@
+/* --- Hero Section & Animations (UPDATED) --- */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.hero-flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 650px;
+}
+
+/* 1. UPDATED: Typing animation for the Greeting */
+.hero-greeting {
+    font-family: var(--font-header);
+    color: var(--accent-cyan);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+
+    /* Typewriter setup */
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    /* Start invisible */
+    border-right: 2px solid var(--accent-cyan);
+    /* Cursor */
+
+    /* Animate: Type for 1.5s, then cursor blinks */
+    animation:
+        typing 1.5s steps(20, end) 0.2s forwards,
+        blink-caret 0.75s step-end infinite;
+}
+
+/* 2. UPDATED: Increased delay for Name (waits for greeting) */
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1;
+    margin-bottom: 25px;
+    font-weight: 800;
+    opacity: 0;
+    /* Start fading up at 1.8s (after greeting finishes) */
+    animation: fadeUp 0.8s 1.8s forwards;
+}
+
+/* 3. UPDATED: Increased delay for Subtitle */
+.hero-subtitle {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--accent-cyan);
+    width: 0;
+    /* Start typing at 2.4s */
+    animation:
+        typing 2.5s steps(30, end) 2.4s forwards,
+        blink-caret .75s step-end infinite;
+}
+
+/* 4. UPDATED: Increased delay for Description */
+.hero-description {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 550px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 3.5s forwards;
+}
+
+.hero-btn-container {
+    opacity: 0;
+    animation: fadeUp 0.8s 3.7s forwards;
+}
+
+/* Image Pulse Animation */
+.hero-image-container {
+    flex: 0 0 auto;
+    width: 350px;
+    height: 350px;
+    position: relative;
+    z-index: 2;
+    opacity: 0;
+    animation: zoomIn 1s 0.5s forwards;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--accent-cyan);
+    background: linear-gradient(45deg, var(--bg-card-glass), var(--bg-dark));
+    animation: cyberPulse 3s infinite;
+}
+
+/* --- Keyframes --- */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes cyberPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 30px rgba(0, 229, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+    }
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent;
+    }
+
+    50% {
+        border-color: var(--accent-cyan);
+    }
+}
